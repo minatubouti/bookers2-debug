@@ -8,14 +8,14 @@ class RelationshipsController < ApplicationController
      current_user.unfollow(params[:user_id])
     redirect_back(fallback_location: root_path)
   end
-  
+  #フォローされている
   def follower
    user = User.find(params[:user_id])
-    @users = user.following_user
+    @users = user.following_users
   end
-  
+  #フォローしている
   def followed
     user = User.find(params[:user_id])
-    @users = user.follower_user
+    @users = user.follower_users
   end
 end
