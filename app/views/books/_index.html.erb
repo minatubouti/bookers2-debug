@@ -21,15 +21,17 @@
           <% if book.favorited_by?(current_user) %>
           <p>
             <%= link_to book_favorites_path(book),method: :delete do %>
-            <i class="fas fa-heart unlike-btn" style="color: red;">
-            <%= book.favorites.count %></i>
+            <i class="fas fa-heart unlike-btn" style ="color: red";>
+            <%= book.favorites.count %>
+            </i>
             <% end %>
+            
           </p>
           <% else %>
           <p>
             <%= link_to book_favorites_path(book), method: :past do %>
-            <i class="far fa-heart like-btn" ></i>
-             <%= book.favorites.count %>
+            <!--<i class="far fa-heart like-btn"><i>-->
+             ♡<%= book.favorites.count %>
             <% end %>
           </p>
           <% end %>
