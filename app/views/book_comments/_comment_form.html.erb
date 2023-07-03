@@ -1,0 +1,7 @@
+<!--コメントフォーム部分プレート-->
+ <%= form_with model: [book, book_comment], local: false, class: "comment-form" do |f| %>
+    <%= f.text_area :comment, rows: '5', class: "form-control comment" %>
+    <div>
+      <%= f.submit "送信" %>
+    </div> 
+  <% end %>

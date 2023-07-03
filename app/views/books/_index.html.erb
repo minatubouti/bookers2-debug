@@ -17,7 +17,7 @@
         <td><%= link_to book.title,book %></td>
         <td><%= book.body %></td>
         <!--いいね機能-->
-        <td id="favorite_buttons_<%= book.id %>">
+         <td id="favorite_buttons_<%= book.id %>">
           <%= render "favorites/favorite-btn", book: book %>
         </td>
         
