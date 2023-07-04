@@ -17,6 +17,10 @@
           </td>
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
+          <td id="favorite_buttons_<%= @book.id %>">
+          <%= render "favorites/favorite-btn", book: @book %>
+          </td>
+            <td> コメント:<%= " #{@book.book_comments.count}"%></td>
              <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
              <% end %>
@@ -26,11 +30,9 @@
         </tr>
       </table>
        <!--コメント機能-->
-       <div id="comment_list">
-         <%= render "book_comments/comment_list",book: @book %>
-       </div>
-       <div id="comment_form">
-         <%= render "book_comments/comment_form", book: @book, book_comment: @book_comment %>
+       
+       <div id="comment_area">
+         <%= render "book_comments/comment", book: @book, book_comment: @book_comment %>
        </div>
        
     </div>

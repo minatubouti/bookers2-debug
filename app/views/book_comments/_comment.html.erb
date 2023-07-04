@@ -11,11 +11,19 @@
         <td><%= book_comment.comment %></td> 
         <td>
           <% if book_comment.user == current_user %>
-            <%= link_to "Destroy", book_book_comment_path(book_comment.book,book_comment), method: :delete, class: "btn btn-sm btn-danger"%>
+          <!--remote: trueを追加-->
+            <%= link_to "Destroy", book_book_comment_path(book_comment.book,book_comment), method: :delete,remote: true, class: "btn btn-sm btn-danger"%>
           <% end %>
         </td>
       </tr>
     <% end %>
   </table>
-
+   <!--コメントフォーム部分プレート-->
+   <!--local: falseを追加-->
+  <%= form_with(model: [book, book_comment], local: false, class: "comment-form") do |f| %>
+    <%= f.text_area :comment, rows: '5', class: "form-control comment" %>
+    <div>
+      <%= f.submit "送信" %>
+    </div> 
+  <% end %>
           
