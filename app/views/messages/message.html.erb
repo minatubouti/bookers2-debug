@@ -1,0 +1,17 @@
+<div class="d-flex justify-content-center mb-2">
+    <h3><%= @user.name %></h3>
+</div>  
+<div class="container bg-dark">
+    <div id="messages">
+      <%= render 'message', messages: @messages %>
+    </div>
+  <div class="row">
+    <%= form_with model:@message ,url:messages_path,method: :post,local:false ,class:"w-100",html: { id: 'message_form' } do |f| %>
+      <div class="d-flex justify-content-center">
+        <%= f.text_field :chat ,class:"w-75",placeholder:"ここにチャットを入力してください",id:"message_field" %>
+        <%= f.hidden_field :receive_user_id,value: params[:id]%>
+        <%= f.submit "送信" ,class:"btn btn-secondary w-25",id:"message-btn"%>
+      </div>
+    <% end %>
+  </div>
+</div>
