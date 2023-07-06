@@ -1,21 +1,24 @@
-<% @entries.each do |e| %>
-  <% if @myUserId != e.user.id %>
-      <h2><%= e.user.name %>さんとのチャット</h2>
-    </div>
-  <% end %>
+<% if @user %>
+  <h1 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>"><%= @user.name %> さんとのチャット</h1>
 <% end %>
 <%= link_to "ユーザー一覧に戻る", users_path %>
 
-   <% if @messages.present? %>
-     <% @messages.each do |m| %>
-       <% @myUserId == m.user.id  %>
-       <p><%= m.user.name %></p>
-         <p><%= m.message %></p>
-     <% end %>
-   <% end %>
-   
-<%= form_for @message do |f| %>
-   <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 50, class:"form-text-field" %>
-      <%= f.hidden_field :room_id, value: @room.id %>
-        <%= f.submit "投稿",class: 'form-submit'%>
- <% end %>
+<div class="message" style="width: 400px;">
+  <% @messages.each do |message| %> 
+    <% if message.user_id == current_user.id %>
+      <p style="text-align: right;"><%= message.message %></p> 
+    <% else %>
+      <p style="text-align: left;"><%= message.message %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="errors">
+  <%= render "layouts/errors", obj: @message %>
+</div>
+
+<%= form_with model: @message, data: {local: false} do |f| %> 
+  <%= f.text_field :message %>
+  <%= f.hidden_field :room_id, value: @room.id %>
+  <%= f.submit "投稿",class: 'form-submit'%>
+<% end %>

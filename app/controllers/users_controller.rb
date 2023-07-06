@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:followings, :followers]
   before_action :ensure_correct_user, only: [:update, :edit]
-  
+  before_action :authenticate_user!, only: [:show]
+
 
   def show
     @user = User.find(params[:id])
@@ -23,7 +24,6 @@ class UsersController < ApplicationController
         @entry = Entry.new
       end
     end
- 
     @books = @user.books
     @book = Book.new
   end

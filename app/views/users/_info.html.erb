@@ -35,9 +35,9 @@
            <% end %>
         <% end %>
         <!--メッセージボタン-->
-  <td>
-     <% unless user.id == current_user.id %>
-  <% if (current_user.following? user) && (user.following? current_user)  %>
+    <td>
+      <% unless user.id == current_user.id %>
+  <% if (current_user.following? @user) && (user.following? current_user)  %>
   <% if isRoom == true %>
     <p class="user-show-room"><a href="/rooms/<%= roomId %>" class="btn btn-primary btn-lg">chatへ</a>
   <% else %>
@@ -50,7 +50,8 @@
   <% end %>
   <% end %>
 <% end %>
-</td>
+    </td>
+    
     </th>
    
   </tr>

@@ -5,6 +5,6 @@ class Message < ApplicationRecord
   
    def message
     body
-  end
+   end
 
 end
