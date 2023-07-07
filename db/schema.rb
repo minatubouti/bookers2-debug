@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_05_043552) do
+ActiveRecord::Schema.define(version: 2023_07_07_082225) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -72,6 +72,15 @@ ActiveRecord::Schema.define(version: 2023_07_05_043552) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "look_counts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "book_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_look_counts_on_book_id"
+    t.index ["user_id"], name: "index_look_counts_on_user_id"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "room_id", null: false
@@ -114,6 +123,8 @@ ActiveRecord::Schema.define(version: 2023_07_05_043552) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "entries", "rooms"
   add_foreign_key "entries", "users"
+  add_foreign_key "look_counts", "books"
+  add_foreign_key "look_counts", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
 end

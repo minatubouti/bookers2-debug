@@ -14,7 +14,8 @@ class User < ApplicationRecord
   # DM機能
   has_many :entries, dependent: :destroy
   has_many :messages, dependent: :destroy
-# has_many :favorited_books, through: :favorites, source: :book
+  #閲覧数の表示
+  has_many :look_counts, dependent: :destroy
    
   
   #フォローしている
