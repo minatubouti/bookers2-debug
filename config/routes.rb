@@ -16,9 +16,7 @@ Rails.application.routes.draw do
    resource :relationships, only:[:create, :destroy]
    get 'follows' => 'relationships#follower'
    get 'followers' => 'relationships#followed'
-   member do
-   get :followed, :follower
-   end
+  
   end
   # DM機能
   resources :messages, only: [:create]
