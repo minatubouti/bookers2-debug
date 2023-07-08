@@ -5,7 +5,7 @@ class BooksController < ApplicationController
     @user = @book.user
     @book_new = Book.new
     @book_comment = BookComment.new 
-  # 以下閲覧数の表示
+  # 以下閲覧数の表示（以下を追加）
      unless LookCount.find_by(user_id: current_user.id, book_id: @book.id)
       current_user.look_counts.create(book_id: @book.id)
      end
