@@ -1,5 +1,5 @@
 const { environment } = require('@rails/webpacker')
-
+// jQuery導入
 const webpack = require('webpack')
 environment.plugins.prepend(
   'Provide',
