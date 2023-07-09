@@ -1,33 +1,40 @@
 <h2>Book search for "test"</h2>
 
 <table class="table table-hover table-inverse">
-   <thead>
+  <thead>
     <tr>
-      <th>Title</th>
-      <th>Opinion</th>
+      <% if @range == "User" %>
+        <th>Image</th>
+        <th>Name</th>
+      <% else %>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Opinion</th>
+      <% end %>
       <th colspan="3"></th>
     </tr>
   </thead>
     
-  <!--検索対象モデルがUserの時 -->
   <% if @range == "User" %>
-  
-   <tbody>
-     <% @users.each do |user| %>
-     <tr>
-       <td><%= image_tag user.get_profile_image(50,50) %></td>
-       <td><%= user.name %></td>
-     </tr>
-     <% end %>
+    <!-- Userが検索対象の時 -->
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= image_tag user.get_profile_image(50,50) %></td>
+          <td><%= user.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
   <% else %>  
-  <!--検索対象モデルがuserでない時(Book)-->
-    <% @books.each do |book| %>
-    <tr>
-     <td><%= image_tag book.user.get_profile_image(50,50) %></td>
-      <td><%= book.title %></td>
-      <td><%= book.body %></td>
-    </tr>
-    <% end %>
-  </tbody>
+    <!-- User以外のモデル(Book)が検索対象の時 -->
+    <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <td><%= image_tag book.user.get_profile_image(50,50) %></td>
+          <td><%= book.title %></td>
+          <td><%= book.body %></td>
+        </tr>
+      <% end %>
+    </tbody>
   <% end %>
- </table>
+</table>
