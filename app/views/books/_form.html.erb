@@ -10,8 +10,20 @@
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
   <!--星評価機能js導入-->
-  <div id="post_raty"></div>
-  <%= javascript_pack_tag 'raty_setup' %>
+   <div class="form-group row" id="star">
+    <%= f.label :star,'評価 ', class:'col-md-3 col-form-label' %>
+    <%= f.hidden_field :star, id: :review_star %>
+　　　　</div>
+  <script>
+　　　　$('#star').empty();
+  $('#star').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+ 　 　　　scoreName: 'book[star]',　
+    half: false,
+  });
+  </script>
 
 
   <div class="form-group">

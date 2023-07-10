@@ -21,15 +21,22 @@
           <%= render "favorites/favorite-btn", book: @book %>
           </td>
             <td> コメント:<%= " #{@book.book_comments.count}"%></td>
-            
-          
-            <td>
-  <% @book.rating.to_i.times do %>
-    <i class="fas fa-star"></i>
-  <% end %>
-</td>
 
-         
+             <div id="display_raty" data-score="<%= @book.rating %>"></div>
+
+                
+                  <div id="star-rate<%= @book.id%>"> </td>
+          <script>
+            $('#star-rate<%= @book.id %>').empty();
+            $('#star-rate<%= @book.id%>').raty({
+              size      : 36,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              half      : false,
+              readOnly: true,
+              score: <%= @book.rating %>,
+            });
+          </script>
             
             <td>閲覧数:<%= @book.look_counts.count %></td>
            
