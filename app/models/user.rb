@@ -27,8 +27,10 @@ class User < ApplicationRecord
   #フォローされている人（全体）
   has_many :following_users, through: :follower, source: :followed
   
-  validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
+   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
    validates :introduction, length: { maximum: 50 }
+  
+
    
    # followメソッド　＝　フォローする
   def follow(user_id)

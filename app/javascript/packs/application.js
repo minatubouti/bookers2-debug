@@ -7,9 +7,12 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import "jquery"
+import $ from "jquery"
+// jQueryを呼び出し
+window.$ = window.jQuery = $
 import "popper.js"
 import "bootstrap"
+
 import Raty from "../raty"
 
 window.raty = function(elem,opt) {
@@ -18,13 +21,24 @@ window.raty = function(elem,opt) {
   return raty;
 }
 
-
-
-
 import "../stylesheets/application" 
+
+document.addEventListener('turbolinks:load', () => {
+  $('#rating').raty({
+    path: '/assets/',
+    scoreName: 'book[rating]'
+  });
+
+  $('#display-rating').raty({
+    path: '/assets/',
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    }
+  });
+});
+
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-
-

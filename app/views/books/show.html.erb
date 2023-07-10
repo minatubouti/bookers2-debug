@@ -21,7 +21,18 @@
           <%= render "favorites/favorite-btn", book: @book %>
           </td>
             <td> コメント:<%= " #{@book.book_comments.count}"%></td>
+            
+          
+            <td>
+  <% @book.rating.to_i.times do %>
+    <i class="fas fa-star"></i>
+  <% end %>
+</td>
+
+         
+            
             <td>閲覧数:<%= @book.look_counts.count %></td>
+           
              
              <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>

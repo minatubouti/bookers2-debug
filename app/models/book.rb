@@ -8,6 +8,8 @@ class Book < ApplicationRecord
    
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
+   validates :rating, inclusion: { in: [1, 2, 3, 4, 5] }, on: :create
+
   
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)

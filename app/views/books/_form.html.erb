@@ -9,6 +9,11 @@
     <%= f.label :opinion %>
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
+  <!--星評価機能js導入-->
+  <div id="post_raty"></div>
+  <%= javascript_pack_tag 'raty_setup' %>
+
+
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
   </div>
